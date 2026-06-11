@@ -487,6 +487,17 @@
   </div>
 </header>
 
+<!-- ===== About ===== -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>About</h2>
+    </div>
+    <p style="font-size:0.92rem; color:#475569; line-height:1.7;">I am an undergraduate researcher at Tsinghua University working at the intersection of <strong>AI and the built environment</strong>. My research focuses on mobile robotic sensing for indoor environmental monitoring, graph-based building energy modeling, and vision-language models for occupant-centric building intelligence. I build open datasets and autonomous sensing platforms that bridge data-driven methods with building science.</p>
+  </div>
+</section>
+
 <!-- ===== Education ===== -->
 <section id="education">
   <div class="container">
@@ -576,10 +587,8 @@
         </div>
         <div class="card-body">
           <ul>
-            <li>Built the <strong>ARMIS</strong> autonomous mobile robot platform integrating high-precision IEQ sensors and multimodal vision, addressing the limited spatial resolution and lack of occupant-awareness in conventional fixed sensors.</li>
-            <li>Applied <strong>Gaussian Process Regression (GPR)</strong> to reconstruct high-resolution IEQ fields (2 m × 2 m) from sparse sampling trajectories, capturing a 4.1 °C spatial gradient in temperature and CO₂ concentration hotspots.</li>
-            <li>Integrated <strong>YOLOv5</strong> occupant detection with <strong>GPT-4o / GLM-4v</strong> vision-language models (VLMs) for non-intrusive extraction of clothing insulation and metabolic rate, feeding into the PMV model for personalized thermal comfort assessment.</li>
-            <li>Conducted a 14-day field experiment across 7,700 m² of public space in Tsinghua's C Building, collecting ~1,300 IEQ field measurements and ~1,100 scene images.</li>
+            <li>Built an <strong>autonomous mobile robot</strong> integrating high-precision IEQ sensors with multimodal vision (RGB + depth), and applied <strong>Gaussian Process Regression</strong> to reconstruct high-resolution environmental fields (2 m × 2 m) from sparse sampling trajectories.</li>
+            <li>Fused <strong>YOLOv5</strong> person detection with <strong>GPT-4o / GLM-4v</strong> vision-language models for non-intrusive occupant characterization, feeding into the PMV model for personalized thermal comfort assessment. Validated through a 14-day field deployment across 7,700 m² at Tsinghua.</li>
           </ul>
           <div class="card-tags">
             <span class="card-tag">Robotics</span>
@@ -603,11 +612,8 @@
         </div>
         <div class="card-body">
           <ul>
-            <li>Collaboration across <strong>Tsinghua × UC Berkeley × MIT</strong>.</li>
-            <li>Constructed a large-scale benchmark dataset comprising <strong>5,481 buildings</strong> and <strong>49,326 simulation cases</strong>, with 133,000 spatial nodes and 1.44 million surface nodes.</li>
-            <li>Represented buildings as <strong>heterogeneous graphs</strong> that align geometric meshes, spatial topology, meteorological data, and hourly zonal thermal loads — filling a critical gap in building energy modeling.</li>
-            <li>Defined two benchmark tasks — <strong>M2G</strong> (Mesh-to-Graph reconstruction) and <strong>G2E</strong> (Graph-to-Energy prediction) — with cross-building and cross-climate generalization protocols.</li>
-            <li>Led data preprocessing, building complexity parameterization, and GNN model development.</li>
+            <li>Collaboration across <strong>Tsinghua × UC Berkeley × MIT</strong>. Constructed a large-scale benchmark of <strong>5,481 buildings</strong> and <strong>49,326 simulation cases</strong>, representing buildings as heterogeneous graphs that align geometric meshes, spatial topology, meteorological data, and hourly thermal loads.</li>
+            <li>Defined two benchmark tasks — <strong>M2G</strong> (Mesh-to-Graph reconstruction) and <strong>G2E</strong> (Graph-to-Energy prediction) — with cross-building and cross-climate generalization. Led data preprocessing and GNN model development.</li>
           </ul>
           <div class="card-tags">
             <span class="card-tag">Graph Neural Networks</span>
@@ -630,9 +636,8 @@
         </div>
         <div class="card-body">
           <ul>
-            <li>Developed a <strong>mobile robotic sensing platform</strong> that collects real-time PM₂.₅, CO₂, temperature, and humidity at human breathing height (1.2 m), targeting post-pandemic indoor microbial aerosol monitoring.</li>
-            <li>Proposed the <strong>MERI (Microbial Equivalent Risk Index)</strong>, overcoming the spatiotemporal limitations of static sensors and pioneering a joint biosafety–comfort assessment framework.</li>
-            <li>Awarded <strong>3rd Prize</strong> at the 43rd Tsinghua Challenge Cup (first author); recognized with National Undergraduate Innovation &amp; Entrepreneurship Program funding (Grade A) and Academic Advancement Program (Grade B).</li>
+            <li>Developed a <strong>mobile robotic sensing platform</strong> targeting post-pandemic indoor microbial aerosol monitoring, collecting real-time PM₂.₅, CO₂, temperature, and humidity at human breathing height (1.2 m).</li>
+            <li>Proposed the <strong>MERI (Microbial Equivalent Risk Index)</strong>, pioneering a joint biosafety–comfort assessment framework. Awarded 3rd Prize at Tsinghua Challenge Cup (first author).</li>
           </ul>
           <div class="card-tags">
             <span class="card-tag">Biosafety</span>
@@ -678,10 +683,8 @@
         </div>
         <div class="card-body">
           <ul>
-            <li>Collected a <strong>multi-scene, multi-modal</strong> indoor environmental dataset across <strong>50,000+ m²</strong> of public building space using the IBEMbot mobile robot platform.</li>
-            <li>Coverage spans multiple climate zones and building types, including <strong>Beijing Daxing International Airport</strong> (27,000 m² / 21 days), Dahe Village Museum (11,000 m² / 16 days), and Alibaba A8 Office Building.</li>
-            <li>Dataset includes CO₂, PM₂.₅, temperature, humidity, and illuminance, along with robot trajectories and reconstructed environmental fields — supporting research in environmental perception, autonomous path planning, and smart building operations.</li>
-            <li><a href="https://github.com/StevieHui/MobilEnv" target="_blank" rel="noopener">github.com/StevieHui/MobilEnv</a></li>
+            <li>Open-source <strong>multi-scene, multi-modal</strong> indoor environmental dataset covering <strong>50,000+ m²</strong> across multiple climate zones — including Beijing Daxing International Airport (27,000 m²), Dahe Village Museum, and Alibaba A8 Office Building.</li>
+            <li>Includes CO₂, PM₂.₅, temperature, humidity, illuminance, robot trajectories, and reconstructed environmental fields. <a href="https://github.com/StevieHui/MobilEnv" target="_blank" rel="noopener">github.com/StevieHui/MobilEnv</a></li>
           </ul>
           <div class="card-tags">
             <span class="card-tag">Open Dataset</span>
@@ -704,8 +707,7 @@
         </div>
         <div class="card-body">
           <ul>
-            <li>Delivered an invited talk titled <em>"Symbiosis of Space and Sensation"</em> at the Architectural Society of China Student Chapter Annual Conference.</li>
-            <li>Presented recent advances in environmental perception and spatial reconstruction, exploring interdisciplinary pathways between AI and the built environment.</li>
+            <li>Delivered an invited talk on AI-driven environmental perception and spatial reconstruction at the Architectural Society of China Student Chapter Annual Conference.</li>
           </ul>
         </div>
       </article>
@@ -814,7 +816,7 @@
   <div class="container">
     <div class="section-label">
       <span class="line"></span>
-      <h2>Global Experience &amp; Leadership</h2>
+      <h2>Service &amp; Leadership</h2>
     </div>
 
     <div class="exp-list">
@@ -822,35 +824,21 @@
         <span class="exp-dot"></span>
         <div class="exp-body">
           <strong>Observer, UNEP INC-5 Plastic Pollution Treaty Negotiations</strong>
-          <span class="exp-meta">Busan, South Korea · Nov 2024 · Participated in international negotiations; authored reports and produced documentary footage.</span>
+          <span class="exp-meta">Busan, South Korea · Nov 2024</span>
         </div>
       </div>
       <div class="exp-item">
         <span class="exp-dot"></span>
         <div class="exp-body">
-          <strong>Deputy Head, Xiuzhong College Student Union Preparatory Group</strong>
-          <span class="exp-meta">Sep 2024 – Sep 2025 · Led the founding of the college's first student union.</span>
-        </div>
-      </div>
-      <div class="exp-item">
-        <span class="exp-dot"></span>
-        <div class="exp-body">
-          <strong>League Branch Secretary, Tsinghua University</strong>
-          <span class="exp-meta">2023 – 2024 · Led branch to earn "Class-A League Branch" and "Outstanding Party Course Group" honors.</span>
+          <strong>Xiuzhong College Student Union</strong>
+          <span class="exp-meta">Deputy Head · Sep 2024 – Sep 2025</span>
         </div>
       </div>
       <div class="exp-item">
         <span class="exp-dot"></span>
         <div class="exp-body">
           <strong>Field Practice &amp; Social Engagement</strong>
-          <span class="exp-meta">Led or co-organized 2 overseas field trips and 10+ domestic social practice projects. Recognized with the "Sailing Star" Award of Ningde and Xiuzhong College Practice Excellence Award.</span>
-        </div>
-      </div>
-      <div class="exp-item">
-        <span class="exp-dot"></span>
-        <div class="exp-body">
-          <strong>"Mufeng" Arts Development Program, 11th Cohort</strong>
-          <span class="exp-meta">Tsinghua University's selective arts leadership program for student cultural development.</span>
+          <span class="exp-meta">Led 2 overseas field trips and 10+ domestic social practice projects. "Sailing Star" Award of Ningde &amp; Xiuzhong College Practice Excellence Award.</span>
         </div>
       </div>
     </div>
