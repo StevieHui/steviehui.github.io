@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yihui Chen — Academic Portfolio. Tsinghua University, Sustainable Cities & Ecological Space. Research in indoor environmental monitoring, building energy modeling, and mobile sensing.">
+  <title>Yihui Chen | Sustainable Cities & Ecological Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #ffffff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 {
+      font-family: 'Crimson Text', 'Georgia', 'Times New Roman', serif;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #1a1a2e;
+    }
+    h2 { font-size: 1.65rem; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.15rem; font-weight: 600; }
+    h4 { font-size: 1.05rem; font-weight: 600; font-family: 'Inter', sans-serif; }
+
+    a {
+      color: #2d3748;
+      text-decoration: none;
+      border-bottom: 1px solid #c4a35a;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    a:hover { color: #c4a35a; border-color: #2d3748; }
+
+    p { margin-bottom: 0.85rem; }
+    p:last-child { margin-bottom: 0; }
+    ul { list-style: none; }
+    small { font-size: 0.8rem; color: #64748b; }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e2e8f0;
+      z-index: 100;
+      padding: 0 1.5rem;
+    }
+    .nav-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-name {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      border: none;
+    }
+    .nav-name:hover { color: #c4a35a; border: none; }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #64748b;
+      border: none;
+    }
+    .nav-links a:hover { color: #c4a35a; }
+    .nav-github {
+      display: flex; align-items: center; gap: 0.35rem;
+      font-size: 0.82rem;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: 8rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .hero-photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #1a1a2e;
+    }
+    .hero .subtitle {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #64748b;
+      margin-bottom: 0.4rem;
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+    }
+    .hero .affiliation {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+    .hero-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #2d3748;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 0.45rem 1rem;
+      transition: all 0.2s;
+    }
+    .hero-links a:hover {
+      border-color: #c4a35a;
+      color: #c4a35a;
+      background: #fdfaf5;
+    }
+
+    /* ===== Section Headings ===== */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .section-label .line {
+      width: 2px;
+      height: 28px;
+      background: #c4a35a;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    .section-label h2 {
+      margin-bottom: 0;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ===== Education ===== */
+    .edu-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.6rem;
+    }
+    .edu-block .school { font-weight: 600; font-size: 1.05rem; }
+    .edu-block .date { font-size: 0.85rem; color: #64748b; white-space: nowrap; }
+    .edu-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 2rem;
+      margin: 0.75rem 0 0.5rem;
+      font-size: 0.88rem;
+      color: #64748b;
+    }
+    .edu-meta span strong { color: #1a1a2e; font-weight: 500; }
+    .course-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.6rem;
+    }
+    .course-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      background: #f8f9fa;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      color: #64748b;
+      white-space: nowrap;
+    }
+    .lang-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    /* ===== Research Cards ===== */
+    .research-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .research-card {
+      padding: 1.5rem;
+      border-left: 3px solid #e2e8f0;
+      border-radius: 0 6px 6px 0;
+      background: #fafbfc;
+      transition: border-color 0.25s;
+    }
+    .research-card:hover { border-left-color: #c4a35a; }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-header h3 { flex: 1; min-width: 280px; line-height: 1.35; }
+    .card-meta {
+      font-size: 0.78rem;
+      color: #64748b;
+      text-align: right;
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+    .card-meta .role { color: #c4a35a; font-weight: 500; }
+    .card-body { font-size: 0.9rem; line-height: 1.65; color: #334155; }
+    .card-body ul { list-style: disc; padding-left: 1.2rem; }
+    .card-body li { margin-bottom: 0.35rem; }
+    .card-body li:last-child { margin-bottom: 0; }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 4px;
+      background: #fdfaf5;
+      color: #8b772e;
+      border: 1px solid #e8ddc4;
+    }
+
+    /* ===== Publications ===== */
+    .pub-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .pub-item:last-child { border-bottom: none; }
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .pub-venue {
+      font-size: 0.82rem;
+      color: #c4a35a;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .pub-authors { font-size: 0.82rem; color: #64748b; }
+
+    /* ===== Awards ===== */
+    .awards-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+    }
+    .award-cat h4 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c4a35a;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .award-item {
+      font-size: 0.88rem;
+      margin-bottom: 0.55rem;
+      padding-left: 0.8rem;
+      border-left: 2px solid #e2e8f0;
+      color: #334155;
+    }
+    .award-item .award-date {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      display: block;
+      margin-top: 0.05rem;
+    }
+
+    /* ===== Skills ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .skill-block h4 {
+      font-size: 0.82rem;
+      margin-bottom: 0.45rem;
+      color: #2d3748;
+    }
+    .skill-block p {
+      font-size: 0.85rem;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    /* ===== Leadership ===== */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .exp-item {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      font-size: 0.9rem;
+    }
+    .exp-item .exp-dot {
+      width: 6px; height: 6px;
+      background: #c4a35a;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+    .exp-item .exp-body { color: #334155; }
+    .exp-item .exp-meta {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      display: block;
+      margin-top: 0.1rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 1rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 640px) {
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.72rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 6.5rem 0 3rem; }
+      section { padding: 3rem 0; }
+      .edu-meta { grid-template-columns: 1fr; }
+      .awards-columns { grid-template-columns: 1fr; gap: 1.2rem; }
+      .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .card-header { flex-direction: column; }
+      .card-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-name">Yihui Chen</a>
+    <div class="nav-links">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#awards">Awards</a>
+      <a href="#skills">Skills</a>
+      <a href="https://github.com/StevieHui" target="_blank" rel="noopener" class="nav-github">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="hero">
+  <div class="container">
+    <img src="photo.png" alt="Yihui Chen" class="hero-photo" width="130" height="130">
+    <h1>Yihui Chen</h1>
+    <p class="subtitle">Sustainable Cities &amp; Ecological Space</p>
+    <p class="affiliation">Xiuzhong College, Tsinghua University</p>
+    <div class="hero-links">
+      <a href="mailto:yh-chen23@mails.tsinghua.edu.cn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+        Email
+      </a>
+      <a href="https://github.com/StevieHui" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+      <a href="https://openreview.net/profile?id=~Yihui_Chen4" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+        OpenReview
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Education ===== -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>Education</h2>
+    </div>
+
+    <div class="edu-block">
+      <span class="school">Tsinghua University &middot; Xiuzhong College</span>
+      <span class="date">Sep 2023 – Jun 2027</span>
+    </div>
+    <p style="color:#64748b; font-size:0.92rem;">B.Eng. in Interdisciplinary Engineering (Sustainable Cities &amp; Ecological Space)</p>
+
+    <div class="edu-meta">
+      <span><strong>GPA:</strong> 3.6 / 4.0</span>
+      <span><strong>Concentration Rank:</strong> 1st (Sustainable Cities &amp; Ecological Space)</span>
+      <span><strong>Overall Rank:</strong> 18 / 61</span>
+      <span><strong>English:</strong> CET-4 &amp; CET-6 · Academic Writing &amp; Presentation</span>
+    </div>
+
+    <p style="font-size:0.82rem;color:#64748b;margin-top:0.6rem;">Key Coursework</p>
+    <div class="course-tags">
+      <span class="course-tag">Fluid Mechanics I (A)</span>
+      <span class="course-tag">Building Environment Science (A)</span>
+      <span class="course-tag">Computer Programming (A)</span>
+      <span class="course-tag">Data Structures &amp; Algorithms (A–)</span>
+      <span class="course-tag">Urban &amp; Rural Planning I/II (A–)</span>
+      <span class="course-tag">Architectural Design II (A)</span>
+      <span class="course-tag">University Physics (B+)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Research ===== -->
+<section id="research">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>Research Experience</h2>
+    </div>
+
+    <div class="research-grid">
+
+      <!-- ARMIS -->
+      <article class="research-card">
+        <div class="card-header">
+          <h3>ARMIS: Autonomous Mobile Sensing System for Intelligent Indoor Environmental Monitoring</h3>
+          <div class="card-meta">
+            <span class="role">First / Co-first Author</span><br>
+            Indoor Air 2026 · <strong>Oral</strong><br>
+            Jul 2025 – Present
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Built the <strong>ARMIS</strong> autonomous mobile robot platform integrating high-precision IEQ sensors and multimodal vision, addressing the limited spatial resolution and lack of occupant-awareness in conventional fixed sensors.</li>
+            <li>Applied <strong>Gaussian Process Regression (GPR)</strong> to reconstruct high-resolution IEQ fields (2 m × 2 m) from sparse sampling trajectories, capturing a 4.1 °C spatial gradient in temperature and CO₂ concentration hotspots.</li>
+            <li>Integrated <strong>YOLOv5</strong> occupant detection with <strong>GPT-4o / GLM-4v</strong> vision-language models (VLMs) for non-intrusive extraction of clothing insulation and metabolic rate, feeding into the PMV model for personalized thermal comfort assessment.</li>
+            <li>Conducted a 14-day field experiment across 7,700 m² of public space in Tsinghua's C Building, collecting ~1,300 IEQ field measurements and ~1,100 scene images.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="card-tag">Robotics</span>
+            <span class="card-tag">GPR</span>
+            <span class="card-tag">VLMs</span>
+            <span class="card-tag">IEQ</span>
+            <span class="card-tag">Thermal Comfort</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ArchEGraph -->
+      <article class="research-card">
+        <div class="card-header">
+          <h3>ArchEGraph: Geometry–Topology–Physics Aligned Building Energy Graph Dataset</h3>
+          <div class="card-meta">
+            <span class="role">Co-first Author (Equal Contribution)</span><br>
+            Submitted to <strong>NeurIPS 2026</strong><br>
+            May 2025 – Present
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Collaboration across <strong>Tsinghua × UC Berkeley × MIT</strong>.</li>
+            <li>Constructed a large-scale benchmark dataset comprising <strong>5,481 buildings</strong> and <strong>49,326 simulation cases</strong>, with 133,000 spatial nodes and 1.44 million surface nodes.</li>
+            <li>Represented buildings as <strong>heterogeneous graphs</strong> that align geometric meshes, spatial topology, meteorological data, and hourly zonal thermal loads — filling a critical gap in building energy modeling.</li>
+            <li>Defined two benchmark tasks — <strong>M2G</strong> (Mesh-to-Graph reconstruction) and <strong>G2E</strong> (Graph-to-Energy prediction) — with cross-building and cross-climate generalization protocols.</li>
+            <li>Led data preprocessing, building complexity parameterization, and GNN model development.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="card-tag">Graph Neural Networks</span>
+            <span class="card-tag">Energy Modeling</span>
+            <span class="card-tag">Benchmark Dataset</span>
+            <span class="card-tag">EnergyPlus</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- IEQ Biosafety -->
+      <article class="research-card">
+        <div class="card-header">
+          <h3>Indoor Environmental Quality &amp; Biosafety Mobile Sensing and Early-Warning Platform</h3>
+          <div class="card-meta">
+            <span class="role">First Author</span><br>
+            National Innovation Program · Completed<br>
+            Jul – Dec 2025
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Developed a <strong>mobile robotic sensing platform</strong> that collects real-time PM₂.₅, CO₂, temperature, and humidity at human breathing height (1.2 m), targeting post-pandemic indoor microbial aerosol monitoring.</li>
+            <li>Proposed the <strong>MERI (Microbial Equivalent Risk Index)</strong>, overcoming the spatiotemporal limitations of static sensors and pioneering a joint biosafety–comfort assessment framework.</li>
+            <li>Awarded <strong>3rd Prize</strong> at the 43rd Tsinghua Challenge Cup (first author); recognized with National Undergraduate Innovation &amp; Entrepreneurship Program funding (Grade A) and Academic Advancement Program (Grade B).</li>
+          </ul>
+          <div class="card-tags">
+            <span class="card-tag">Biosafety</span>
+            <span class="card-tag">Mobile Sensing</span>
+            <span class="card-tag">IAQ</span>
+            <span class="card-tag">Risk Index</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- National Key R&D -->
+      <article class="research-card">
+        <div class="card-header">
+          <h3>Intelligent Pre-Planning &amp; Post-Occupancy Evaluation for Large-Scale Buildings</h3>
+          <div class="card-meta">
+            <span class="role">Research Assistant</span><br>
+            National Key R&D Program<br>
+            Jan 2024
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Contributed to a national-level project under the <strong>14th Five-Year Plan</strong> (2022YFC3801300), led by <strong>Academician Weimin Zhuang</strong>.</li>
+            <li>Conducted on-site indoor environmental monitoring and multi-parameter data collection at the <strong>Dahe Village Archaeological Museum</strong> demonstration project, supporting project acceptance and delivery.</li>
+          </ul>
+          <div class="card-tags">
+            <span class="card-tag">Building Performance</span>
+            <span class="card-tag">Field Measurement</span>
+            <span class="card-tag">IEQ</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- MobilEnv -->
+      <article class="research-card">
+        <div class="card-header">
+          <h3>MobilEnv: A Multi-Scene, Multi-Modal Indoor Environmental Mobile Sensing Dataset</h3>
+          <div class="card-meta">
+            <span class="role">First Author</span><br>
+            Open-Source · GitHub<br>
+            2025 – Present
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Collected a <strong>multi-scene, multi-modal</strong> indoor environmental dataset across <strong>50,000+ m²</strong> of public building space using the IBEMbot mobile robot platform.</li>
+            <li>Coverage spans multiple climate zones and building types, including <strong>Beijing Daxing International Airport</strong> (27,000 m² / 21 days), Dahe Village Museum (11,000 m² / 16 days), and Alibaba A8 Office Building.</li>
+            <li>Dataset includes CO₂, PM₂.₅, temperature, humidity, and illuminance, along with robot trajectories and reconstructed environmental fields — supporting research in environmental perception, autonomous path planning, and smart building operations.</li>
+            <li><a href="https://github.com/StevieHui/MobilEnv" target="_blank" rel="noopener">github.com/StevieHui/MobilEnv</a></li>
+          </ul>
+          <div class="card-tags">
+            <span class="card-tag">Open Dataset</span>
+            <span class="card-tag">Mobile Sensing</span>
+            <span class="card-tag">Multi-Scene</span>
+            <span class="card-tag">SLAM</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Invited Talk -->
+      <article class="research-card">
+        <div class="card-header">
+          <h3>Building Environment Perception &amp; Reconstruction</h3>
+          <div class="card-meta">
+            <span class="role">Invited Speaker</span><br>
+            Architectural Society of China<br>
+            2026
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Delivered an invited talk titled <em>"Symbiosis of Space and Sensation"</em> at the Architectural Society of China Student Chapter Annual Conference.</li>
+            <li>Presented recent advances in environmental perception and spatial reconstruction, exploring interdisciplinary pathways between AI and the built environment.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Publications ===== -->
+<section id="publications">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>Publications</h2>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">ARMIS: An Autonomous Mobile Sensing System for Intelligent Indoor Environmental Monitoring with Multimodal Data</p>
+      <p class="pub-venue">Indoor Air 2026 — International Conference (Oral Presentation)</p>
+      <p class="pub-authors">First / Co-first Author</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">ArchEGraph: A Large-Scale Graph Dataset for Geometry–Topology–Physics Aligned Building Energy Modeling</p>
+      <p class="pub-venue">Submitted to NeurIPS 2026 Datasets &amp; Benchmarks Track</p>
+      <p class="pub-authors">Co-first Author (Equal Contribution) · Tsinghua × UC Berkeley × MIT</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Awards ===== -->
+<section id="awards">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>Honors &amp; Awards</h2>
+    </div>
+
+    <div class="awards-columns">
+      <div class="award-cat">
+        <h4>Research &amp; Academic</h4>
+        <div class="award-item">
+          3rd Prize, 43rd Tsinghua Challenge Cup <span class="award-date">First Author · 2024</span>
+        </div>
+        <div class="award-item">
+          Academic Advancement Program, Grade B <span class="award-date">Completed · 2024</span>
+        </div>
+        <div class="award-item">
+          National Undergraduate Innovation &amp; Entrepreneurship Program <span class="award-date">Completed · 2024</span>
+        </div>
+      </div>
+      <div class="award-cat">
+        <h4>Comprehensive &amp; Leadership</h4>
+        <div class="award-item">
+          Beijing Outstanding Student <span class="award-date">2024</span>
+        </div>
+        <div class="award-item">
+          Tsinghua Comprehensive Excellence Scholarship <span class="award-date">2024 &amp; 2025</span>
+        </div>
+        <div class="award-item">
+          Tsinghua Outstanding Student Leader <span class="award-date">2024</span>
+        </div>
+        <div class="award-item">
+          Tsinghua Social Work Excellence Scholarship <span class="award-date">2024</span>
+        </div>
+        <div class="award-item">
+          Xiuzhong College Crystal Stone Award · S&amp;T Innovation <span class="award-date">2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Skills ===== -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>Skills</h2>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h4>Building Performance Simulation</h4>
+        <p>Proficient in EnergyPlus for energy, thermal, and daylighting modeling and simulation. Familiar with Honeybee for parametric workflows.</p>
+      </div>
+      <div class="skill-block">
+        <h4>Machine Learning &amp; Data Science</h4>
+        <p>PyTorch, Graph Neural Networks (GNNs), Gaussian Process Regression (GPR), Vision-Language Models (VLMs), YOLO object detection.</p>
+      </div>
+      <div class="skill-block">
+        <h4>Indoor Environmental Monitoring</h4>
+        <p>Multi-parameter IEQ sensor deployment and calibration, mobile robotic sensing platforms (Athena 2.0 Pro), synchronized multimodal data acquisition and spatiotemporal analysis.</p>
+      </div>
+      <div class="skill-block">
+        <h4>Programming &amp; Tools</h4>
+        <p>Python (data processing, analysis, deep learning), Git/GitHub collaboration, Microsoft Office Suite.</p>
+      </div>
+      <div class="skill-block">
+        <h4>Modeling &amp; Visualization</h4>
+        <p>Rhino, AutoCAD, SketchUp, Adobe Photoshop / Illustrator.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Global & Leadership ===== -->
+<section id="leadership">
+  <div class="container">
+    <div class="section-label">
+      <span class="line"></span>
+      <h2>Global Experience &amp; Leadership</h2>
+    </div>
+
+    <div class="exp-list">
+      <div class="exp-item">
+        <span class="exp-dot"></span>
+        <div class="exp-body">
+          <strong>Observer, UNEP INC-5 Plastic Pollution Treaty Negotiations</strong>
+          <span class="exp-meta">Busan, South Korea · Nov 2024 · Participated in international negotiations; authored reports and produced documentary footage.</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="exp-dot"></span>
+        <div class="exp-body">
+          <strong>Deputy Head, Xiuzhong College Student Union Preparatory Group</strong>
+          <span class="exp-meta">Sep 2024 – Sep 2025 · Led the founding of the college's first student union.</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="exp-dot"></span>
+        <div class="exp-body">
+          <strong>League Branch Secretary, Tsinghua University</strong>
+          <span class="exp-meta">2023 – 2024 · Led branch to earn "Class-A League Branch" and "Outstanding Party Course Group" honors.</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="exp-dot"></span>
+        <div class="exp-body">
+          <strong>Team Leader, Rural Revitalization Workstation, Fu'an, Fujian</strong>
+          <span class="exp-meta">Aug 2025 · Led a field practice team in rural community development and cultural preservation.</span>
+        </div>
+      </div>
+      <div class="exp-item">
+        <span class="exp-dot"></span>
+        <div class="exp-body">
+          <strong>"Mufeng" Arts Development Program, 11th Cohort</strong>
+          <span class="exp-meta">Tsinghua University's selective arts leadership program for student cultural development.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <p>&copy; 2025 Yihui Chen &nbsp;·&nbsp; Xiuzhong College, Tsinghua University &nbsp;·&nbsp; Beijing, China</p>
+  </div>
+</footer>
+
+</body>
+</html>
