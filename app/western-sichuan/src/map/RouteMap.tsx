@@ -15,9 +15,10 @@ interface Props {
   onSegmentClick: (segment: RouteSegment, step?: RouteStep, route?: PlannedRoute) => void;
   onWaypointClick: (point: Waypoint) => void;
   onRouteStatus: (id: string, status: string) => void;
+  onRouteData: (id: string, route: PlannedRoute) => void;
 }
 
-export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, onSegmentClick, onWaypointClick, onRouteStatus }: Props) {
+export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, onSegmentClick, onWaypointClick, onRouteStatus, onRouteData }: Props) {
   const container = useRef<HTMLDivElement>(null);
   const map = useRef<any>(null);
   const layer = useRef<any>(null);
@@ -29,12 +30,14 @@ export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, on
   const clickSegment = useRef(onSegmentClick);
   const clickPoint = useRef(onWaypointClick);
   const routeStatus = useRef(onRouteStatus);
+  const routeData = useRef(onRouteData);
   const [error, setError] = useState('');
   selection.current = selectedDay;
   labels.current = showLabels;
   clickSegment.current = onSegmentClick;
   clickPoint.current = onWaypointClick;
   routeStatus.current = onRouteStatus;
+  routeData.current = onRouteData;
 
   const refresh = () => {
     if (!map.current) return;
@@ -87,6 +90,7 @@ export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, on
             const matched = !segment.verifyRoad || route.steps.some(step => step.road.includes(segment.verifyRoad!));
             if (!matched) { routeStatus.current(segment.id, '未验证经过理小路，未绘制导航线'); continue; }
             routeStatus.current(segment.id, '已取得高德道路轨迹');
+            routeData.current(segment.id, route);
             for (const step of route.steps) {
               const category = segment.category === 'mountain' ? 'mountain' : classifyRoad(step.road);
               const color = category === 'mountain' ? '#c67943' : days[segment.day - 1].color;
