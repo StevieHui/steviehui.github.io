@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { days, points, type Waypoint } from '../data/itinerary';
 import { classifyRoad, segments, type RouteSegment } from '../data/roadSegments';
 import { loadAmap, planDriving, type PlannedRoute, type RouteStep } from './amap';
+import { pickNextRoute } from './routePriority';
 
 type Line = { day: number; object: any };
 type Marker = { day: number; object: any; point: Waypoint };
@@ -82,13 +83,20 @@ export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, on
           }
         }
         refresh();
-        for (const segment of segments.filter(x => x.mode === 'driving')) {
-          if (cancelled) break;
+        const drivingSegments = segments.filter(x => x.mode === 'driving');
+        const attempts: Record<string, number> = {};
+        const completed = new Set<string>();
+        while (!cancelled) {
+          const segment = pickNextRoute(drivingSegments, selection.current, attempts, completed);
+          if (!segment) break;
+          attempts[segment.id] = (attempts[segment.id] ?? 0) + 1;
+          routeStatus.current(segment.id, attempts[segment.id] === 1 ? '高德路线规划中' : '高德路线重试中');
           try {
             const route = await planDriving(AMap, segment.id, points[segment.from].coordinates, points[segment.to].coordinates);
             if (cancelled) break;
-            const matched = !segment.verifyRoad || route.steps.some(step => step.road.includes(segment.verifyRoad!));
-            if (!matched) { routeStatus.current(segment.id, '未验证经过理小路，未绘制导航线'); continue; }
+            const matched = !segment.verifyRoad || route.steps.some(step => step.road.includes(segment.verifyRoad!) || /(?:国道\s*)?G?622(?:国道)?/i.test(step.road));
+            if (!matched) { completed.add(segment.id); routeStatus.current(segment.id, '未验证经过理小路，未绘制导航线'); continue; }
+            completed.add(segment.id);
             routeStatus.current(segment.id, '已取得高德道路轨迹');
             routeData.current(segment.id, route);
             for (const step of route.steps) {
@@ -99,7 +107,10 @@ export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, on
               polyline.setMap(instance);
               lines.current.push({ day: segment.day, object: polyline });
             }
-          } catch { routeStatus.current(segment.id, '道路规划失败，路线待核实'); }
+          } catch (cause) {
+            const reason = cause instanceof Error ? cause.message.slice(0, 70) : '未知原因';
+            routeStatus.current(segment.id, attempts[segment.id] < 2 ? `首次失败，准备重试：${reason}` : `高德未返回有效路线：${reason}`);
+          }
           refresh();
         }
       } catch (cause) {
