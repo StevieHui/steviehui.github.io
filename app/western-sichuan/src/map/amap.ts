@@ -46,7 +46,11 @@ export function planDriving(AMap: any, id: string, from: Coordinates, to: Coordi
     driving.search(from, to, (status: string, data: any) => {
       window.clearTimeout(timer);
       const route = data?.routes?.[0];
-      if (status !== 'complete' || !route?.steps?.length) { reject(new Error(`道路规划未返回有效路线：${String(data?.info || status)}`)); return; }
+      if (status !== 'complete' || !route?.steps?.length) {
+        const reason = typeof data === 'string' ? data : data?.info || status;
+        reject(new Error(`道路规划未返回有效路线：${String(reason)}`));
+        return;
+      }
       const steps: RouteStep[] = route.steps.map((step: any) => ({
         road: String(step.road || ''), distance: Number(step.distance || 0),
         path: Array.isArray(step.path) ? step.path.map((p: any) => [Number(p.lng), Number(p.lat)] as Coordinates).filter((p: Coordinates) => Number.isFinite(p[0]) && Number.isFinite(p[1])) : [],
