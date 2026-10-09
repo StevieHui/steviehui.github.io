@@ -86,11 +86,16 @@ export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, on
         const drivingSegments = segments.filter(x => x.mode === 'driving');
         const attempts: Record<string, number> = {};
         const completed = new Set<string>();
+        let nextRequestAt = 0;
         while (!cancelled) {
+          const waitMs = Math.max(0, nextRequestAt - Date.now());
+          if (waitMs) await new Promise(resolve => window.setTimeout(resolve, waitMs));
+          if (cancelled) break;
           const segment = pickNextRoute(drivingSegments, selection.current, attempts, completed);
           if (!segment) break;
           attempts[segment.id] = (attempts[segment.id] ?? 0) + 1;
           routeStatus.current(segment.id, attempts[segment.id] === 1 ? '高德路线规划中' : '高德路线重试中');
+          nextRequestAt = Date.now() + 2200;
           try {
             const route = await planDriving(AMap, segment.id, points[segment.from].coordinates, points[segment.to].coordinates);
             if (cancelled) break;
@@ -109,7 +114,11 @@ export function RouteMap({ selectedDay, satellite, showLabels, overviewToken, on
             }
           } catch (cause) {
             const reason = cause instanceof Error ? cause.message.slice(0, 70) : '未知原因';
-            routeStatus.current(segment.id, attempts[segment.id] < 2 ? `首次失败，准备重试：${reason}` : `高德未返回有效路线：${reason}`);
+            const limited = reason.includes('CUQPS_HAS_EXCEEDED_THE_LIMIT');
+            if (limited) nextRequestAt = Date.now() + 5000;
+            routeStatus.current(segment.id, attempts[segment.id] < 2
+              ? limited ? '高德请求限流，稍后重试' : `首次失败，准备重试：${reason}`
+              : limited ? '高德请求限流，请稍后刷新重试' : `高德未返回有效路线：${reason}`);
           }
           refresh();
         }

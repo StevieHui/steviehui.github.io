@@ -41,7 +41,7 @@ export function App() {
   const activeSegments = selectedDay ? segments.filter(x => x.day === selectedDay) : [];
   const drivingSegments = activeSegments.filter(x => x.mode === 'driving');
   const plannedSegments = drivingSegments.filter(x => routeData[x.id]);
-  const pendingSegments = drivingSegments.filter(x => !routeData[x.id] && !statuses[x.id]?.startsWith('高德未返回') && !statuses[x.id]?.startsWith('未验证'));
+  const pendingSegments = drivingSegments.filter(x => !routeData[x.id] && !statuses[x.id]?.startsWith('高德未返回') && !statuses[x.id]?.startsWith('高德请求限流，请稍后刷新') && !statuses[x.id]?.startsWith('未验证'));
   const plannedDistance = plannedSegments.reduce((sum, x) => sum + (routeData[x.id].distance ?? 0), 0);
   const plannedMinutes = plannedSegments.reduce((sum, x) => sum + (routeData[x.id].duration ?? 0), 0) / 60;
   const roadBreakdown = { expressway: 0, ordinary: 0, mountain: 0, unknown: 0 };
